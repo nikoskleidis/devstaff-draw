@@ -22,6 +22,20 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## API 
+
+For the API we are using the [Retool api generator](https://retool.com/api-generator/).  
+For this project, the api can be found under https://retoolapi.dev/Le1f7y/participants
+
+| Method	          | Endpoint 	                               |
+|------------------|------------------------------------------|
+| GET              | /Le1f7y/participants                   |
+| GET filter       | /Le1f7y/participants?name=value        |
+| GET by id        | /Le1f7y/participants/1                 |
+| GET paginate     | /Le1f7y/participants?_page=2&_limit=10 |
+| POST             | /Le1f7y/participants                   |
+| PUT/PATCH/DELETE | /Le1f7y/participants/1                 |
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
