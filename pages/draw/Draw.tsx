@@ -1,14 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-
-type Participant = {
-  id: string;
-  name: string;
-  email: string;
-  participation_time: string;
-};
+import { Participant } from '@/types';
 
 const getParticipants = async (): Promise<Participant[]> => {
-  const res = await fetch('https://retoolapi.dev/Le1f7y/participants');
+  const res = await fetch('api/participants');
   return res.json();
 };
 
