@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Participant } from '@/types';
+import { Participant } from '@/src/types';
 
 const getParticipants = async (): Promise<Participant[]> => {
   const res = await fetch('api/participants');

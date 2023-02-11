@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Participant } from '@/types';
+import { Participant } from '@/src/types';
 
 const BASE_URL = 'https://retoolapi.dev/Le1f7y';
 
