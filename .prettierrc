@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 110,
+  "trailingComma": "none",
+  "arrowParens": "avoid",
+  "importOrder": [
+    "^[./]"
+  ]
+}
