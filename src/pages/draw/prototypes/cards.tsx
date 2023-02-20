@@ -109,7 +109,6 @@ const Cards = () => {
       <div
         style={{
           padding: 0,
-          margin: '-8px',
           backgroundColor: '#111',
           height: '100vh',
           position: 'relative',
