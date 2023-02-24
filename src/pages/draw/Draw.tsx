@@ -1,10 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
-
-const getParticipants = async (): Promise<Participant[]> => {
-  const res = await fetch('api/participants');
-  return res.json();
-};
+import { getParticipants } from '@/src/api';
 
 const Draw = () => {
   const { data, isSuccess } = useQuery<Participant[]>(['participants'], getParticipants);
