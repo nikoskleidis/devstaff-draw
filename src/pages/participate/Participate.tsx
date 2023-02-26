@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { registerNewParticipant } from '@/src/api';
 import { useForm } from 'react-hook-form';
 import { NewParticipant } from '@/src/types';
-import { emailRegex } from '@/src/constants';
+import { Colors, emailRegex } from '@/src/constants';
 
 type Inputs = {
   email: string;
@@ -13,7 +13,7 @@ type Inputs = {
 };
 
 const ErrorMessage = ({ children }: { children: ReactNode }): ReactElement => (
-  <p role="alert" style={{ color: '#D92929FF', margin: '4px 0 0 0' }}>
+  <p role="alert" style={{ color: `${Colors.colorError}`, margin: '4px 0 0 0' }}>
     {children}
   </p>
 );
@@ -52,7 +52,7 @@ const Participate = () => {
       }}
     >
       <h2 style={{ alignSelf: 'center' }}>Participate</h2>
-      <p style={{ color: '#6D6E71', fontWeight: 'bold' }}>
+      <p style={{ color: `${Colors.grey}`, fontWeight: 'bold' }}>
         Fill in your contact details and get a chance to win one of the free Jetbrain licenses
       </p>
       <form
@@ -96,10 +96,10 @@ const Participate = () => {
           loading={isRegisterParticipantLoading}
           sx={{
             width: '260px',
-            borderColor: '#2991A1',
+            borderColor: `${Colors.colorPrimary}`,
             background: 'white',
-            color: '#2991A1',
-            ':hover': { background: '#2991A1', color: 'white' }
+            color: `${Colors.colorPrimary}`,
+            ':hover': { background: `${Colors.colorPrimary}`, color: 'white' }
           }}
         >
           Participate
