@@ -46,10 +46,15 @@ const Participate = () => {
         flexDirection: 'column',
         margin: 'auto',
         padding: '16px',
-        alignItems: 'center'
+        alignItems: 'center',
+        gap: '16px',
+        maxWidth: '375px'
       }}
     >
       <h2 style={{ alignSelf: 'center' }}>Participate</h2>
+      <p style={{ color: '#6D6E71', fontWeight: 'bold' }}>
+        Fill in your contact details and get a chance to win one of the free Jetbrain licenses
+      </p>
       <form
         id="participate-form"
         style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
@@ -86,7 +91,17 @@ const Participate = () => {
           />
           <ErrorMessage>{errors.fullName?.message}</ErrorMessage>
         </div>
-        <Button type="submit" loading={isRegisterParticipantLoading} sx={{ width: '260px' }}>
+        <Button
+          type="submit"
+          loading={isRegisterParticipantLoading}
+          sx={{
+            width: '260px',
+            borderColor: '#2991A1',
+            background: 'white',
+            color: '#2991A1',
+            ':hover': { background: '#2991A1', color: 'white' }
+          }}
+        >
           Participate
         </Button>
       </form>
