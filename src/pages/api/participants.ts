@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Participant } from '@/src/types';
 
-const BASE_URL = 'https://retoolapi.dev/Le1f7y';
+export const BASE_URL = 'https://retoolapi.dev/Le1f7y';
 
 export default async function handler(_req: NextApiRequest, res: NextApiResponse<Participant[]>) {
   if (_req.method === 'GET') {
@@ -12,5 +12,13 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
     return;
   } else if (_req.method === 'POST') {
     // TODO perform the request in order to generate a new participant
+    const result = await fetch(`${BASE_URL}/participants`, {
+      method: 'POST',
+      body: JSON.stringify(_req.body)
+    });
+    const newParticipantResult = await result.json();
+
+    res.status(200).json(newParticipantResult);
+    return;
   }
 }

@@ -33,7 +33,7 @@ const Listing = () => {
 
   return (
     <div style={{ padding: '8px' }}>
-      Listing page
+      <h2>Listing page</h2>
       <motion.ol
         variants={{
           hidden: { opacity: 0 },

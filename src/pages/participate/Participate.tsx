@@ -1,12 +1,14 @@
 import { Autocomplete, Button, Loader, TextInput } from '@mantine/core';
-import { FormEvent, useId, useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
+import { BASE_URL } from '@/src/pages/api/participants';
+import { useRouter } from 'next/router';
 
 const Participate = () => {
   const timeoutRef = useRef<number>(-1);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<string[]>([]);
-  const userId = useId();
+  const router = useRouter();
 
   const handleChange = (val: string) => {
     window.clearTimeout(timeoutRef.current);
@@ -30,13 +32,20 @@ const Participate = () => {
     const { fullName, email } = e.target;
 
     const data = {
-      id: userId,
       email: email.value.trim(),
-      name: fullName.value.trim()
+      name: fullName.value.trim(),
+      participation_time: new Date().toDateString()
     };
 
-    // TODO after endpoint creation, make the respsective request
-    console.log(JSON.stringify(data));
+    await fetch(`${BASE_URL}/participants`, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        router.push('/listing');
+      });
   };
 
   return (
@@ -49,13 +58,10 @@ const Participate = () => {
         padding: '16px'
       }}
     >
-      <h1 style={{ alignSelf: 'center' }}>Participate</h1>
+      <h2 style={{ alignSelf: 'center' }}>Participate</h2>
       <form
         id="participate-form"
         style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
-        method="post"
-        // TODO replace action with endpoint
-        action="/api/form"
         onSubmit={handleSubmit}
       >
         <Autocomplete
