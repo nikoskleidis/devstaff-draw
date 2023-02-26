@@ -11,7 +11,6 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
     res.status(200).json(participants);
     return;
   } else if (_req.method === 'POST') {
-    // TODO perform the request in order to generate a new participant
     const result = await fetch(`${BASE_URL}/participants`, {
       method: 'POST',
       body: JSON.stringify(_req.body)
