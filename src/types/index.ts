@@ -4,3 +4,9 @@ export type Participant = {
   email: string;
   participation_time: string;
 };
+
+export type NewParticipant = {
+  email: string;
+  name: string;
+  participation_time: string;
+};
