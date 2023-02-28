@@ -3,8 +3,9 @@ import { Participant } from '@/src/types';
 import { draw as drawFn, getParticipants } from '@/src/api';
 import { motion, useAnimationControls } from 'framer-motion';
 import { getViewportSize, stringToHSL } from '@/src/utils';
-import { Text, Box, Button } from '@mantine/core';
+import { Text, Box } from '@mantine/core';
 import Head from 'next/head';
+import DrawForm from '../components/DrawForm';
 
 const CARD_WIDTH = 200;
 const CARD_HEIGHT = 280;
@@ -36,7 +37,7 @@ const Draw = () => {
     mutate: draw,
     isLoading: isDrawLoading,
     isSuccess: isDrawSuccess
-  } = useMutation(() => drawFn(2), {
+  } = useMutation((count: number) => drawFn(count), {
     onSuccess: ids => handleDraw(ids)
   });
 
@@ -134,18 +135,16 @@ const Draw = () => {
         ))}
       </Box>
 
-      {participants && participants.length > 0 ? (
-        <Button
+      {participants && participants.length > 0 && !isDrawLoading && !isDrawSuccess ? (
+        <Box
           sx={() => ({
             position: 'fixed',
-            top: '20px',
-            left: '20px'
+            bottom: '20px',
+            right: '20px'
           })}
-          type="button"
-          onClick={() => draw()}
         >
-          Draw
-        </Button>
+          <DrawForm onSubmit={draw} />
+        </Box>
       ) : null}
     </>
   );
