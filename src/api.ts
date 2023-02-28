@@ -13,3 +13,8 @@ export const registerNewParticipant = async (participant: NewParticipant): Promi
 
   return res.json();
 };
+
+export const draw = async (count: number): Promise<number[]> => {
+  const res = await fetch(`api/participants/draw?count=${count}`, { method: 'POST' });
+  return res.json();
+};
