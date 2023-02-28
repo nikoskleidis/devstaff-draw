@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
 import { motion } from 'framer-motion';
 import { getParticipants } from '@/src/api';
-import { stringToColor } from '@/src/utils';
+import { stringToHSL } from '@/src/utils';
 
 const Listing = () => {
   const { data, isSuccess } = useQuery<Participant[]>(['participants'], getParticipants, {
@@ -45,7 +45,7 @@ const Listing = () => {
               border: '1px solid #ccc',
               borderRadius: '8px',
               boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-              backgroundColor: stringToColor(participant.name)
+              backgroundColor: stringToHSL(participant.name)
             }}
           >
             {participant.name}

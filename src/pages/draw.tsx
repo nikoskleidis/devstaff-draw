@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
 import { draw as drawFn, getParticipants } from '@/src/api';
 import { motion, useAnimationControls } from 'framer-motion';
-import { getViewportSize, stringToColor } from '@/src/utils';
+import { getViewportSize, stringToHSL } from '@/src/utils';
 import { Text, Box, Button } from '@mantine/core';
 import Head from 'next/head';
 
@@ -79,7 +79,7 @@ const Draw = () => {
             x:
               (selectedParticipantIds.indexOf(participants[i].id) - (selectedParticipantIds.length - 1) / 2) *
               (CARD_WIDTH + 32),
-            rotate: getRandomAngle(3)
+            rotate: getRandomAngle(5)
           }
         : {}
     );
@@ -117,8 +117,7 @@ const Draw = () => {
             onViewportEnter={() => handleCardEnter(index)}
             viewport={{ once: true }}
             style={{
-              // backgroundColor: '#ddd',
-              backgroundColor: stringToColor(participant.name),
+              backgroundColor: stringToHSL(participant.name),
               width: `${CARD_WIDTH}px`,
               height: `${CARD_HEIGHT}px`,
               fontWeight: 'bold',
