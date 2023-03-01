@@ -2,11 +2,8 @@ export type Participant = {
   id: number;
   name: string;
   email: string;
-  participation_time: string;
+  participationTime: string;
+  isWinner: boolean;
 };
 
-export type NewParticipant = {
-  email: string;
-  name: string;
-  participation_time: string;
-};
+export type NewParticipant = Pick<Participant, 'name' | 'email'>;

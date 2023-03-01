@@ -1,3 +1,5 @@
+export const BASE_URL = 'https://retoolapi.dev/bX41ZA';
+
 export const emailRegex = () => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i;
 
 export const Colors: Record<string, string> = {

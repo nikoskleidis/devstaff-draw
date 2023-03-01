@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Participant } from '@/src/types';
-
-export const BASE_URL = 'https://retoolapi.dev/Le1f7y';
+import { BASE_URL } from '@/src/constants';
 
 const selectParticipants = (participants: Participant[], count: number) => {
   const selected: Participant[] = [];

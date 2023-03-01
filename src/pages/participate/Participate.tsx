@@ -61,7 +61,6 @@ const Participate = () => {
         onSubmit={handleSubmit(formData =>
           registerParticipant({
             name: formData.fullName,
-            participation_time: new Date().toDateString(),
             email: formData.email
           } satisfies NewParticipant)
         )}
