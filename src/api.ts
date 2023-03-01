@@ -18,3 +18,8 @@ export const draw = async (count: number): Promise<number[]> => {
   const res = await fetch(`api/participants/draw?count=${count}`, { method: 'POST' });
   return res.json();
 };
+
+export const newDraw = async () => {
+  const res = await fetch(`api/admin/newDraw`, { method: 'POST' });
+  return res.json();
+};
