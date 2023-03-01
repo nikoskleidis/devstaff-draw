@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import Layout from "@/src/components/Layout";
 
 const Home = () => {
   return (
-    <main>
+    <Layout>
       <h1>Home</h1>
       <ul>
         <li>
@@ -15,7 +16,7 @@ const Home = () => {
           <Link href="/participate">Participate</Link>
         </li>
       </ul>
-    </main>
+    </Layout>
   );
 };
 
