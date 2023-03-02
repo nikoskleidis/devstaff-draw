@@ -49,7 +49,7 @@ const Draw = () => {
     controls.start(i => (i === index ? { scale: 1, transition: { duration: 0.2, delay: i * 0.1 } } : {}));
   };
 
-  const handleDraw = async (selectedParticipantIds: number[]) => {
+  const handleDraw = async (selectedParticipantIds: string[]) => {
     if (!participants) return;
 
     // Move all non-selected cards outside of the viewport
