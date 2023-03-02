@@ -43,6 +43,7 @@ const Admin = () => {
           <tr>
             <th>id</th>
             <th>name</th>
+            <th>email</th>
             <th>has won</th>
             <th>participation time</th>
             <th>actions</th>
@@ -53,12 +54,14 @@ const Admin = () => {
             <tr key={participant.id}>
               <td>{participant.id}</td>
               <td>{participant.name}</td>
+              <td>{participant.email}</td>
               <td>{participant.isWinner ? 'yes' : 'no'}</td>
               <td>{participant.participationTime}</td>
               <td>
                 <button onClick={() => removeParticipant(participant.id)} type="button">
                   X
-                </button>{' '}
+                </button>
+                {participant.isWinner ? <a href={`mailto:${participant.email}`}>Mail winner</a> : null}
               </td>
             </tr>
           ))}
