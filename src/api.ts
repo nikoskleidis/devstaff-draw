@@ -24,6 +24,14 @@ export const newDraw = async () => {
   return res.json();
 };
 
+export const removeParticipant = async (id: string): Promise<Response> => {
+  const res = await fetch(`api/participants/${id}`, {
+    method: 'DELETE'
+  });
+
+  return res.json();
+};
+
 export const authenticate = async (password: string): Promise<{}> => {
   const res = await fetch('api/authenticate', {
     method: 'POST',
