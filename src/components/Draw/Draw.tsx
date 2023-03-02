@@ -45,6 +45,8 @@ const Draw = () => {
     refetchInterval: isDrawLoading || isDrawSuccess ? 0 : 1000
   });
 
+  if (!participants) return null;
+
   const handleCardEnter = (index: number) => {
     controls.start(i => (i === index ? { scale: 1, transition: { duration: 0.2, delay: i * 0.1 } } : {}));
   };
@@ -105,7 +107,13 @@ const Draw = () => {
           gap: '16px'
         })}
       >
-        {participants?.map((participant, index) => (
+        {participants.length === 0 ? (
+          <Text size="xl" color="white" weight="bold">
+            Waiting for participants
+          </Text>
+        ) : null}
+
+        {participants.map((participant, index) => (
           <motion.div
             key={participant.id}
             custom={index}

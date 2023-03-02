@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Participant } from '@/src/types';
 import { fetchParticipants } from '@/src/pages/api/participants/index';
+import { BASE_URL } from '@/src/constants';
 
 const selectParticipants = (participants: Participant[], count: number) => {
   const selected: Participant[] = [];
@@ -27,6 +28,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const selectedParticipants = selectParticipants(
         participants,
         Number.isInteger(Number(count)) ? Number(count) : 2
+      );
+
+      await Promise.all(
+        selectedParticipants.map(participant =>
+          fetch(`${BASE_URL}/participants/${participant.id}.json`, {
+            method: 'PATCH',
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify({
+              isWinner: true
+            })
+          })
+        )
       );
 
       res.status(200).json(selectedParticipants.map(({ id }) => id));
