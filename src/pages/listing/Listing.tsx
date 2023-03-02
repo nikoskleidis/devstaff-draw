@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
 import { getParticipants } from '@/src/api';
 import Layout from '@/src/components/Layout';
-import { StyledList, StyledListItem } from '@/src/pages/listing/styled';
+import { StyledList, StyledListItem } from '@/src/styled/listing.styled';
 
 const Listing = () => {
   const { data, isSuccess } = useQuery<Participant[]>(['participants'], getParticipants, {
