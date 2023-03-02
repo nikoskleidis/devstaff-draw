@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Participant } from '@/src/types';
-import { BASE_URL } from '@/src/constants';
+import { fetchParticipants } from '@/src/pages/api/participants/index';
 
 const selectParticipants = (participants: Participant[], count: number) => {
   const selected: Participant[] = [];
@@ -18,11 +18,10 @@ const selectParticipants = (participants: Participant[], count: number) => {
   return selected;
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<number[] | {}>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<string[] | {}>) {
   switch (req.method) {
     case 'POST':
-      const result = await fetch(`${BASE_URL}/participants`);
-      const participants = ((await result.json()) as Participant[]).filter(({ name }) => name);
+      const participants = await fetchParticipants();
 
       const { count } = req.query;
       const selectedParticipants = selectParticipants(

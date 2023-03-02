@@ -2,13 +2,24 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { Participant } from '@/src/types';
 import { BASE_URL } from '@/src/constants';
 
+export const fetchParticipants = async () => {
+  const participantsResponse = await fetch(`${BASE_URL}/participants.json`);
+  const participantsObj = (await participantsResponse.json()) as Record<string, Participant> | null;
+  if (!participantsObj) {
+    return [];
+  }
+
+  return Object.keys(participantsObj).map(key => ({
+    ...participantsObj[key],
+    id: key
+  }));
+};
+
 export default async function handler(_req: NextApiRequest, res: NextApiResponse<Participant[] | {}>) {
   switch (_req.method) {
     case 'GET':
       // Retrieve all the participants
-      const participantsResponse = await fetch(`${BASE_URL}/participants`);
-      const participants = (await participantsResponse.json()) as Participant[];
-
+      const participants = await fetchParticipants();
       res.status(200).json(participants);
       return;
     case 'POST':
@@ -19,7 +30,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
         isWinner: false
       } as Omit<Participant, 'id'>;
 
-      const newParticipantResponse = await fetch(`${BASE_URL}/participants`, {
+      const newParticipantResponse = await fetch(`${BASE_URL}/participants.json`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json; charset=UTF-8'

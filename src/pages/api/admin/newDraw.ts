@@ -1,16 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { BASE_URL } from '@/src/constants';
-import { Participant } from '@/src/types';
+import { fetchParticipants } from '@/src/pages/api/participants';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<{ success: boolean } | {}>) {
   switch (req.method) {
     case 'POST':
-      const result = await fetch(`${BASE_URL}/participants`);
-      const participants = (await result.json()) as Participant[];
+      const participants = await fetchParticipants();
 
       await Promise.all(
         participants.map(({ id }) =>
-          fetch(`${BASE_URL}/participants/${id}`, {
+          fetch(`${BASE_URL}/participants/${id}.json`, {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json; charset=UTF-8'

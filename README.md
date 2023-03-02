@@ -22,17 +22,18 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## API 
 
-For the API we are using the [Retool api generator](https://retool.com/api-generator/).  
-For this project, the api can be found under https://retoolapi.dev/Le1f7y/participants
+For the API we are using the [Firebase REST API](https://firebase.google.com/docs/database/rest/start).  
+For this project, the api can be found under https://devstaff-draw-default-rtdb.europe-west1.firebasedatabase.app
 
-| Method	          | Endpoint 	                               |
-|------------------|------------------------------------------|
-| GET              | /Le1f7y/participants                   |
-| GET filter       | /Le1f7y/participants?name=value        |
-| GET by id        | /Le1f7y/participants/1                 |
-| GET paginate     | /Le1f7y/participants?_page=2&_limit=10 |
-| POST             | /Le1f7y/participants                   |
-| PUT/PATCH/DELETE | /Le1f7y/participants/1                 |
+
+| Method	          | Endpoint 	                                     |
+|------------------|------------------------------------------------|
+| GET              | /urlBase/participants.json                     |
+| GET filter       | /urlBase/participants.json?name=value          |
+| GET by id        | /urlBase/participants/1.json                   |
+| GET paginate     | /urlBase/participants.json?_page=2&_limit=10   |
+| POST             | /urlBase/participants.json                     |
+| PUT/PATCH/DELETE | /urlBase/participants/1.json                   |
 
 ## Learn More
 
