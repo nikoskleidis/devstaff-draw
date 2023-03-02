@@ -1,11 +1,20 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
-import { getParticipants, newDraw } from '@/src/api';
+import { getParticipants, newDraw, removeParticipant } from '@/src/api';
 
 const Admin = () => {
   const { data, isSuccess, refetch } = useQuery<Participant[]>(['participants'], getParticipants);
 
   const { mutate: newDrawMutation } = useMutation(newDraw, {
+    onSuccess: () => {
+      void refetch();
+    },
+    onError: error => {
+      console.log({ error });
+    }
+  });
+
+  const { mutate: removeParticipantMutation } = useMutation(removeParticipant, {
     onSuccess: () => {
       void refetch();
     },
@@ -31,10 +40,6 @@ const Admin = () => {
     }
   };
 
-  const removeParticipant = (id: number) => {
-    console.log('Remove participant', id);
-  };
-
   return (
     <div>
       <button onClick={onNewDrawClick}>NEW DRAW</button>
@@ -56,7 +61,7 @@ const Admin = () => {
               <td>{participant.isWinner ? 'yes' : 'no'}</td>
               <td>{participant.participationTime}</td>
               <td>
-                <button onClick={() => removeParticipant(participant.id)} type="button">
+                <button onClick={() => removeParticipantMutation(participant.id)} type="button">
                   X
                 </button>{' '}
               </td>
