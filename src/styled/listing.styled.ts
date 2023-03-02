@@ -20,6 +20,10 @@ export const StyledList = styled(motion.ol).attrs({
   gap: 8px;
   list-style: none;
   padding: 0;
+
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const StyledListItem = styled(motion.li).attrs({
