@@ -71,19 +71,19 @@ const Layout = ({ children }: Props) => {
       <Footer>
         <Social>
           <a href="https://github.com/devstaff-crete/DevStaff-Heraklion" target="_blank" rel="noreferrer">
-            <Image alt="github" height="32" width="32" src="https://cdn.simpleicons.org/github/6D6E71" />
+            <Image alt="github" height="32" width="32" src="/social/github.svg" unoptimized />
           </a>
-          <a href="http://meetup.com/devstaff" target="_blank" rel="noreferrer">
-            <Image alt="meetup" height="42" width="42" src="https://cdn.simpleicons.org/meetup/6D6E71" />
+          <a href="https://meetup.com/devstaff" target="_blank" rel="noreferrer">
+            <Image alt="meetup" height="42" width="42" src="/social/meetup.svg" unoptimized />
           </a>
           <a href="https://www.facebook.com/Devstaff" target="_blank" rel="noreferrer">
-            <Image alt="facebook" height="32" width="32" src="https://cdn.simpleicons.org/facebook/6D6E71" />
+            <Image alt="facebook" height="32" width="32" src="/social/facebook.svg" unoptimized />
           </a>
           <a href="https://twitter.com/devstaff_gr" target="_blank" rel="noreferrer">
-            <Image alt="twitter" height="32" width="32" src="https://cdn.simpleicons.org/twitter/6D6E71" />
+            <Image alt="twitter" height="32" width="32" src="/social/twitter.svg" unoptimized />
           </a>
           <a href="https://www.linkedin.com/company/devstaff" target="_blank" rel="noreferrer">
-            <Image alt="meetup" height="32" width="32" src="https://cdn.simpleicons.org/linkedin/6D6E71" />
+            <Image alt="meetup" height="32" width="32" src="/social/linkedin.svg" unoptimized />
           </a>
         </Social>
         <Website href="https://devstaff.gr" target="_blank" rel="noreferrer">

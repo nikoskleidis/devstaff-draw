@@ -8,8 +8,15 @@ const nextConfig = {
     styledComponents: true
   },
   images: {
-    domains: ['cdn.simpleicons.org'],
-  },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.simpleicons.org',
+        port: '',
+        pathname: '/**/**'
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;
