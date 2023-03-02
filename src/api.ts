@@ -24,6 +24,14 @@ export const newDraw = async () => {
   return res.json();
 };
 
+export const generateParticipants = async (): Promise<Response> => {
+  const res = await fetch('api/admin/mockParticipants', {
+    method: 'POST'
+  });
+
+  return res.json();
+};
+
 export const removeParticipant = async (id: string): Promise<Response> => {
   const res = await fetch(`api/participants/${id}`, {
     method: 'DELETE'

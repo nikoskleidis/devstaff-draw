@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
-import { getParticipants, newDraw, removeParticipant } from '@/src/api';
+import { generateParticipants, getParticipants, newDraw, removeParticipant } from '@/src/api';
 
 const Admin = () => {
   const { data, isSuccess, refetch } = useQuery<Participant[]>(['participants'], getParticipants);
@@ -23,12 +23,26 @@ const Admin = () => {
     }
   });
 
+  const { mutate: generateParticipantsMutation } = useMutation(generateParticipants, {
+    onSuccess: () => {
+      void refetch();
+    },
+    onError: error => {
+      console.log({ error });
+    }
+  });
+
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
 
   if (data.length === 0) {
-    return <div>No participants yet</div>;
+    return (
+      <div>
+        <div>No participants yet</div>
+        <button onClick={() => generateParticipantsMutation()}>Mock Participants</button>
+      </div>
+    );
   }
 
   const onNewDrawClick = () => {
@@ -43,6 +57,7 @@ const Admin = () => {
   return (
     <div>
       <button onClick={onNewDrawClick}>NEW DRAW</button>
+      <button onClick={() => generateParticipantsMutation()}>Mock Participants</button>
       <table>
         <thead>
           <tr>
