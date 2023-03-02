@@ -18,7 +18,7 @@ const selectParticipants = (participants: Participant[], count: number) => {
   return selected;
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<number[]>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<number[] | {}>) {
   switch (req.method) {
     case 'POST':
       const result = await fetch(`${BASE_URL}/participants`);
@@ -33,6 +33,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       res.status(200).json(selectedParticipants.map(({ id }) => id));
       break;
     default:
-      res.status(405).end();
+      res.status(405).json({});
   }
 }

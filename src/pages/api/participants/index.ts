@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { Participant } from '@/src/types';
 import { BASE_URL } from '@/src/constants';
 
-export default async function handler(_req: NextApiRequest, res: NextApiResponse<Participant[]>) {
+export default async function handler(_req: NextApiRequest, res: NextApiResponse<Participant[] | {}>) {
   switch (_req.method) {
     case 'GET':
       // Retrieve all the participants
@@ -32,5 +32,6 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
       res.status(200).json(newParticipantResult);
       return;
     default:
+      res.status(405).json({});
   }
 }

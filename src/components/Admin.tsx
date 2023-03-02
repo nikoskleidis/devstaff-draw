@@ -19,7 +19,7 @@ const Admin = () => {
   }
 
   if (data.length === 0) {
-    return 'No participants yet';
+    return <div>No participants yet</div>;
   }
 
   const onNewDrawClick = () => {

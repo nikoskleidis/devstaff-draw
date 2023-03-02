@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { BASE_URL } from '@/src/constants';
 import { Participant } from '@/src/types';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<{ success: boolean }>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<{ success: boolean } | {}>) {
   switch (req.method) {
     case 'POST':
       const result = await fetch(`${BASE_URL}/participants`);
@@ -21,6 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       res.status(200).json({ success: true });
       break;
     default:
-      res.status(405).end();
+      res.status(405).json({});
   }
 }

@@ -23,3 +23,16 @@ export const newDraw = async () => {
   const res = await fetch(`api/admin/newDraw`, { method: 'POST' });
   return res.json();
 };
+
+export const authenticate = async (password: string): Promise<{}> => {
+  const res = await fetch('api/authenticate', {
+    method: 'POST',
+    body: JSON.stringify({ password })
+  });
+
+  if (!res.ok) {
+    throw new Error('Invalid password');
+  }
+
+  return res.json();
+};
