@@ -1,5 +1,6 @@
-import { ActionIcon, Box, Button, Group, Stack, Text } from '@mantine/core';
+import { ActionIcon, Button, Group, Stack, Text } from '@mantine/core';
 import { useState } from 'react';
+import { Colors } from '@/src/constants';
 
 type Props = {
   onSubmit: (count: number) => void;
@@ -32,7 +33,17 @@ const DrawForm = ({ onSubmit }: Props) => {
         </ActionIcon>
       </Group>
 
-      <Button onClick={() => onSubmit(counter)}>Draw</Button>
+      <Button
+        onClick={() => onSubmit(counter)}
+        sx={{
+          borderColor: `${Colors.colorPrimary}`,
+          background: 'white',
+          color: `${Colors.colorPrimary}`,
+          ':hover': { background: `${Colors.colorPrimary}`, color: 'white' }
+        }}
+      >
+        Draw
+      </Button>
     </Stack>
   );
 };
