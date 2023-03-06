@@ -2,12 +2,10 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppProps } from 'next/app';
-import { IBM_Plex_Sans } from '@next/font/google';
+import { Cabin } from '@next/font/google';
 import { MantineProvider } from '@mantine/core';
 
-const ibmPlexSans = IBM_Plex_Sans({
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
+const cabin = Cabin({
   subsets: ['latin']
 });
 
@@ -24,7 +22,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <QueryClientProvider client={queryClient}>
-        <div className={ibmPlexSans.className}>
+        <div className={cabin.className}>
           <Component {...pageProps} />
         </div>
         <ReactQueryDevtools />
