@@ -64,7 +64,7 @@ const Layout = ({ children }: Props) => {
     <Wrapper>
       <Header>
         <Link href="/">
-          <Image src="/devstaff-logo.webp" alt="Devstaff logo" width={90} height={50} />
+          <Image src="/devstaff-logo.webp" alt="Devstaff logo" width={110} height={61} />
         </Link>
         <Title>DevStaff Draw</Title>
       </Header>
