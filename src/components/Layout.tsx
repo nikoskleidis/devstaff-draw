@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Colors } from '@/src/constants';
+import Link from 'next/link';
 
 type Props = {
   children?: React.ReactNode;
@@ -23,7 +24,7 @@ const Main = styled.main`
 `;
 
 const Header = styled.div`
-  padding: 15px;
+  padding: 24px;
   background: ${Colors.headerBg};
   display: flex;
   align-items: center;
@@ -32,7 +33,7 @@ const Header = styled.div`
 
 const Title = styled.span`
   font-weight: bold;
-  font-size: 22px;
+  font-size: 26px;
   color: ${Colors.grey};
 `;
 
@@ -62,7 +63,9 @@ const Layout = ({ children }: Props) => {
   return (
     <Wrapper>
       <Header>
-        <Image src="/devstaff-logo.webp" alt="Devstaff logo" width={90} height={50} />
+        <Link href="/">
+          <Image src="/devstaff-logo.webp" alt="Devstaff logo" width={90} height={50} />
+        </Link>
         <Title>DevStaff Draw</Title>
       </Header>
 
