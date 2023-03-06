@@ -34,7 +34,10 @@ const Header = styled.div`
 const Title = styled.span`
   font-weight: bold;
   font-size: 26px;
-  color: ${Colors.grey};
+  background: linear-gradient(to right, ${Colors.colorPrimary}, ${Colors.colorSecondary});
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 `;
 
 const Footer = styled.div`
