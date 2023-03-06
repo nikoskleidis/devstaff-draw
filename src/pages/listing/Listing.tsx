@@ -31,8 +31,6 @@ const Listing = () => {
   return (
     <Layout>
       <div style={{ padding: '8px' }}>
-        <h2>Listing page</h2>
-
         {data.winners && data.winners.length > 0 ? (
           <>
             <h3>Winners</h3>
