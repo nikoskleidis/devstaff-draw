@@ -29,7 +29,7 @@ const StyledParagraph = styled.p`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 `;
 
 const ErrorMessage = ({ children }: { children: ReactNode }): ReactElement => (
@@ -63,9 +63,7 @@ const Participate = () => {
     <Layout>
       <Stack sx={{ alignItems: 'center' }} spacing={8}>
         <h2>Participate</h2>
-        <StyledParagraph>
-          Fill in your contact details and get a chance to win one of the free Jetbrain licenses
-        </StyledParagraph>
+        <StyledParagraph>Fill in your contact details and get a chance to win!</StyledParagraph>
         <StyledForm
           id="participate-form"
           onSubmit={handleSubmit(formData =>
@@ -100,11 +98,13 @@ const Participate = () => {
             />
             <ErrorMessage>{errors.fullName?.message}</ErrorMessage>
           </div>
+
           <Button
             type="submit"
             loading={isRegisterParticipantLoading}
             sx={{
               width: '260px',
+              marginTop: '22px',
               borderColor: `${Colors.colorPrimary}`,
               background: 'white',
               color: `${Colors.colorPrimary}`,
