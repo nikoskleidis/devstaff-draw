@@ -3,6 +3,7 @@ import { Participant } from '@/src/types';
 import { getParticipants } from '@/src/api';
 import Layout from '@/src/components/Layout';
 import { StyledList, StyledListItem } from '@/src/styled/listing.styled';
+import Head from 'next/head';
 
 const participationTimeComparator = (a: Participant, b: Participant) =>
   Number(a.participationTime) - Number(b.participationTime);
@@ -29,35 +30,42 @@ const Listing = () => {
   }
 
   return (
-    <Layout>
-      <div style={{ padding: '8px' }}>
-        {data.winners && data.winners.length > 0 ? (
-          <>
-            <h3>Winners</h3>
-            <StyledList>
-              {data.winners.map(participant => (
-                <StyledListItem key={participant.id} $participantName={participant.name}>
-                  {participant.name}
-                </StyledListItem>
-              ))}
-            </StyledList>
-          </>
-        ) : null}
+    <>
+      <Head>
+        <title>Listing</title>
+        <meta name="description" content="See who has joined the draw" />
+      </Head>
 
-        {data.participants && data.participants.length > 0 ? (
-          <>
-            <h3>Participants</h3>
-            <StyledList>
-              {data.participants.map(participant => (
-                <StyledListItem key={participant.id} $participantName={participant.name}>
-                  {participant.name}
-                </StyledListItem>
-              ))}
-            </StyledList>
-          </>
-        ) : null}
-      </div>
-    </Layout>
+      <Layout>
+        <div style={{ padding: '8px' }}>
+          {data.winners && data.winners.length > 0 ? (
+            <>
+              <h3>Winners</h3>
+              <StyledList>
+                {data.winners.map(participant => (
+                  <StyledListItem key={participant.id} $participantName={participant.name}>
+                    {participant.name}
+                  </StyledListItem>
+                ))}
+              </StyledList>
+            </>
+          ) : null}
+
+          {data.participants && data.participants.length > 0 ? (
+            <>
+              <h3>Participants</h3>
+              <StyledList>
+                {data.participants.map(participant => (
+                  <StyledListItem key={participant.id} $participantName={participant.name}>
+                    {participant.name}
+                  </StyledListItem>
+                ))}
+              </StyledList>
+            </>
+          ) : null}
+        </div>
+      </Layout>
+    </>
   );
 };
 
