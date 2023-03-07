@@ -6,7 +6,7 @@ import { StyledList, StyledListItem } from '@/src/styled/listing.styled';
 import Head from 'next/head';
 
 const participationTimeComparator = (a: Participant, b: Participant) =>
-  Number(a.participationTime) - Number(b.participationTime);
+  new Date(b.participationTime).getTime() - new Date(a.participationTime).getTime();
 
 const Listing = () => {
   const { data, isSuccess } = useQuery<

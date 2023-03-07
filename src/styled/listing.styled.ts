@@ -8,7 +8,7 @@ export const StyledList = styled(motion.ol).attrs({
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.5
+        staggerChildren: 0.2
       }
     }
   },
@@ -27,6 +27,12 @@ export const StyledList = styled(motion.ol).attrs({
 `;
 
 export const StyledListItem = styled(motion.li).attrs({
+  layout: true,
+  transition: {
+    layout: {
+      duration: 0.3
+    }
+  },
   variants: {
     hidden: { opacity: 0 },
     show: { opacity: 1 }
