@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           headers: {
             'Content-type': 'application/json; charset=UTF-8'
           },
-          body: JSON.stringify(participant)
+          body: JSON.stringify({ ...participant, participationTime: new Date().toISOString() })
         });
         await sleep(randomMS());
       }
