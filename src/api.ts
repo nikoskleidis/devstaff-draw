@@ -11,6 +11,10 @@ export const registerNewParticipant = async (participant: NewParticipant): Promi
     body: JSON.stringify(participant)
   });
 
+  if (!res.ok) {
+    throw new Error('Error');
+  }
+
   return res.json();
 };
 
