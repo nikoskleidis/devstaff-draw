@@ -53,8 +53,8 @@ const Participate = () => {
       onSuccess: () => {
         router.push('/listing');
       },
-      onError: error => {
-        console.log({ error });
+      onError: () => {
+        alert('Email already registered');
       }
     }
   );
