@@ -1,6 +1,25 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Participant } from '@/src/types';
+import { Button, Table } from '@mantine/core';
 import { generateParticipants, getParticipants, newDraw, removeParticipant } from '@/src/api';
+import { Colors } from '@/src/constants';
+import styled from 'styled-components';
+
+const ButtonsWrapper = styled.div`
+  padding: 20px;
+`;
+
+const Wrapper = styled.div`
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledTable = styled(Table)`
+  max-width: 1024px;
+`;
 
 const Admin = () => {
   const { data, isSuccess, refetch } = useQuery<Participant[]>(['participants'], getParticipants);
@@ -38,10 +57,20 @@ const Admin = () => {
 
   if (data.length === 0) {
     return (
-      <div>
+      <Wrapper>
         <div>No participants yet</div>
-        <button onClick={() => generateParticipantsMutation()}>Mock Participants</button>
-      </div>
+        <Button
+          sx={{
+            width: '200px',
+            margin: '22px',
+            background: `${Colors.colorSecondary}`,
+            color: 'white'
+          }}
+          onClick={() => generateParticipantsMutation()}
+        >
+          Mock Participants
+        </Button>
+      </Wrapper>
     );
   }
 
@@ -55,18 +84,40 @@ const Admin = () => {
   };
 
   return (
-    <div>
-      <button onClick={onNewDrawClick}>NEW DRAW</button>
-      <button onClick={() => generateParticipantsMutation()}>Mock Participants</button>
-      <table>
+    <Wrapper>
+      <ButtonsWrapper>
+        <Button
+          sx={{
+            width: '200px',
+            margin: '22px',
+            background: `${Colors.colorPrimary}`,
+            color: 'white'
+          }}
+          onClick={onNewDrawClick}
+        >
+          NEW DRAW
+        </Button>
+        <Button
+          sx={{
+            width: '200px',
+            margin: '22px',
+            background: `${Colors.colorSecondary}`,
+            color: 'white'
+          }}
+          onClick={() => generateParticipantsMutation()}
+        >
+          Mock Participants
+        </Button>
+      </ButtonsWrapper>
+      <StyledTable>
         <thead>
           <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>email</th>
-            <th>has won</th>
-            <th>participation time</th>
-            <th>actions</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>IsWinner</th>
+            <th>Participation Time</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -78,16 +129,28 @@ const Admin = () => {
               <td>{participant.isWinner ? 'yes' : 'no'}</td>
               <td>{participant.participationTime}</td>
               <td>
-                <button onClick={() => removeParticipantMutation(participant.id)} type="button">
-                  X
-                </button>
-                {participant.isWinner ? <a href={`mailto:${participant.email}`}>Mail winner</a> : null}
+                <Button
+                  sx={{
+                    background: 'indianred',
+                    color: 'white',
+                    marginRight: '10px'
+                  }}
+                  onClick={() => removeParticipantMutation(participant.id)}
+                  type="button"
+                >
+                  Delete
+                </Button>
+                {participant.isWinner ? (
+                  <a href={`mailto:${participant.email}`}>
+                    <Button type="button">Mail winner</Button>
+                  </a>
+                ) : null}
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </StyledTable>
+    </Wrapper>
   );
 };
 
