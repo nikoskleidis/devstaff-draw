@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Layout from '@/src/components/Layout';
 import styled, { css } from 'styled-components';
 import { Colors } from '@/src/constants';
+import Head from 'next/head';
 
 const Button = styled.button<{ buttonType: 'primary' | 'secondary' }>`
   width: 90vw;
@@ -32,16 +33,22 @@ const Wrapper = styled.div`
 
 const Home = () => {
   return (
-    <Layout>
-      <Wrapper>
-        <Link href="/participate">
-          <Button buttonType="primary">Participate</Button>
-        </Link>
-        <Link href="/listing">
-          <Button buttonType="secondary">List</Button>
-        </Link>
-      </Wrapper>
-    </Layout>
+    <>
+      <Head>
+        <title>DevStaff Draw</title>
+      </Head>
+
+      <Layout>
+        <Wrapper>
+          <Link href="/participate">
+            <Button buttonType="primary">Participate</Button>
+          </Link>
+          <Link href="/listing">
+            <Button buttonType="secondary">List</Button>
+          </Link>
+        </Wrapper>
+      </Layout>
+    </>
   );
 };
 
