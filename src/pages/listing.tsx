@@ -8,6 +8,21 @@ import Head from 'next/head';
 const participationTimeComparator = (a: Participant, b: Participant) =>
   new Date(b.participationTime).getTime() - new Date(a.participationTime).getTime();
 
+const groupParticipantsByTheirLuck = (
+  participants: Participant[] = []
+): [winners: Participant[], losers: Participant[]] => {
+  const winners: Participant[] = [];
+
+  for (let i = participants.length - 1; i >= 0; i--) {
+    if (participants[i].isWinner) {
+      const [personWithLuck] = participants.splice(i, 1);
+      winners.push(personWithLuck);
+    }
+  }
+
+  return [winners, participants];
+};
+
 const Listing = () => {
   const { data, isSuccess } = useQuery<
     Participant[],
@@ -15,10 +30,14 @@ const Listing = () => {
     { winners: Participant[]; participants: Participant[] }
   >(['participants'], getParticipants, {
     refetchInterval: 1500,
-    select: data => ({
-      winners: data.filter(participant => participant.isWinner).sort(participationTimeComparator),
-      participants: data.filter(participant => !participant.isWinner).sort(participationTimeComparator)
-    })
+    select: data => {
+      const [winners, losers] = groupParticipantsByTheirLuck(data);
+
+      return {
+        winners: winners.sort(participationTimeComparator),
+        participants: losers.sort(participationTimeComparator)
+      };
+    }
   });
 
   if (!isSuccess) {
