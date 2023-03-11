@@ -8,7 +8,7 @@ import Head from 'next/head';
 const participationTimeComparator = (a: Participant, b: Participant) =>
   new Date(b.participationTime).getTime() - new Date(a.participationTime).getTime();
 
-const groupParticipantsByTheirLuck = (
+const groupParticipantsBasedOnDrawResult = (
   participants: Participant[] = []
 ): [winners: Participant[], losers: Participant[]] => {
   const winners: Participant[] = [];
@@ -31,7 +31,7 @@ const Listing = () => {
   >(['participants'], getParticipants, {
     refetchInterval: 1500,
     select: data => {
-      const [winners, losers] = groupParticipantsByTheirLuck(data);
+      const [winners, losers] = groupParticipantsBasedOnDrawResult(data);
 
       return {
         winners: winners.sort(participationTimeComparator),
