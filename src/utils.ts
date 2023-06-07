@@ -1,4 +1,4 @@
-export const stringToHSL = (str: string, saturation = 70, lightness = 80) => {
+export const stringToHSL = (str: string, saturation = 80, lightness = 75) => {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);

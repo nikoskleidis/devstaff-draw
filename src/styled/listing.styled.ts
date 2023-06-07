@@ -38,6 +38,8 @@ export const StyledListItem = styled(motion.li).attrs({
     show: { opacity: 1 }
   }
 })<{ $participantName: string }>`
+  font-weight: bold;
+  font-size: 16px;
   text-align: center;
   padding: 10px;
   border: 1px solid #ccc;
