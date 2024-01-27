@@ -1,13 +1,20 @@
+import styled from 'styled-components';
 import { Anchor, Modal, Stack, Text } from '@mantine/core';
 import Image from 'next/image';
-import Link from 'next/link';
 
 type Props = {
   open: boolean;
   onClose: () => void;
 };
 
+const DrawUrlText = styled.text`
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: 2rem
+`;
+
 const ShareDrawModal = ({ open, onClose }: Props) => {
+  const drawUrlFull = 'https://devstaff.gr/draw';
   const drawUrl = 'devstaff.gr/draw';
 
   return (
@@ -16,7 +23,7 @@ const ShareDrawModal = ({ open, onClose }: Props) => {
         opened={open}
         onClose={onClose}
         centered
-        title="Participate to the draw"
+        title="Participate in the draw"
         radius={0}
         transition="fade"
         transitionDuration={600}
@@ -26,17 +33,15 @@ const ShareDrawModal = ({ open, onClose }: Props) => {
           <Image
             src="/qrcode.webp"
             alt="QR code for sharing the DevStaff Draw website"
-            width={350}
-            height={350}
+            width={370}
+            height={370}
             priority
           />
 
-          <Text size="xl" my="4" color="grey">
-            OR
-          </Text>
+          <Text size="xl" my="4" color="grey">OR</Text>
 
-          <Anchor href="https://devstaff.gr/draw" target="_blank" rel="noreferrer">
-            <Text size="xl">{drawUrl}</Text>
+          <Anchor href={drawUrlFull} target="_blank" rel="noreferrer">
+            <DrawUrlText>{drawUrl}</DrawUrlText>
           </Anchor>
         </Stack>
       </Modal>
